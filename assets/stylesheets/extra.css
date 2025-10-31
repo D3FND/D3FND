@@ -1,0 +1,248 @@
+/* === Minimal greys, reduced chrome ===================================== */
+
+/* Light mode neutrals */
+:root {
+  --brand-grey: #6b7280;      /* text-muted */
+  --brand-accent: #94a3b8;    /* link hover / subtle accents */
+}
+
+/* Dark mode neutrals (slate-ish) */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #0e1116;
+  --md-default-fg-color: #e5e7eb;
+  --md-code-bg-color: #0b0f14;
+  --md-footer-bg-color: #0e1116;
+}
+
+/* Flatten primary/accent so the site reads grey, not blue */
+:root,
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #6b7280;    /* grey-500 */
+  --md-primary-fg-color--light: #9ca3af;
+  --md-primary-fg-color--dark: #4b5563;
+  --md-accent-fg-color: #94a3b8;     /* blue-grey 400 */
+}
+
+/* Links: subtle grey with tasteful hover */
+.md-typeset a {
+  color: var(--brand-accent);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(148,163,184,.35);
+}
+.md-typeset a:hover {
+  color: var(--md-primary-fg-color);
+  border-bottom-color: rgba(107,114,128,.6);
+}
+
+/* Reduce shadows and rounding for minimalist feel */
+.md-header, .md-footer, .md-sidebar, .md-content, .md-typeset .admonition,
+.md-typeset details, .md-button {
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+/* Hide footer navigation to keep things clean */
+.md-footer__inner {
+  border-top: 1px solid rgba(148,163,184,.15);
+}
+.md-footer__link { display: none; }
+
+/* Tighter content width for focus */
+.md-grid { max-width: 1000px; }
+
+/* Buttons (for CTA blocks in index.md) */
+.md-button {
+  background: transparent;
+  border: 1px solid rgba(148,163,184,.35);
+  color: var(--md-primary-fg-color);
+}
+.md-button--primary {
+  background: rgba(148,163,184,.15);
+  border-color: rgba(148,163,184,.35);
+}
+
+/* Admonitions: soft greys only */
+.md-typeset .admonition,
+.md-typeset details {
+  background: rgba(148,163,184,.08);
+  border-color: rgba(148,163,184,.25);
+}
+
+/* Code blocks: subtle frame, no glow */
+.md-typeset pre > code {
+  border: 1px solid rgba(148,163,184,.15);
+}
+
+/* Minimal footer */
+.md-footer__inner { border-top: 1px solid rgba(148,163,184,.15); }
+.md-footer__link { display: none; }          /* hides prev/next links */
+.md-footer-meta__inner { justify-content: center; gap: 16px; } /* center socials */
+
+/* Hide the ¶ permalink icon on headings */
+.headerlink {
+  display: none !important;
+}
+
+/* keep anchor visible below fixed header on jump */
+#join-the-discussion {
+  scroll-margin-top: 84px;
+}
+
+/* === Giscus Discussion Block (fits the minimal grey theme) ============= */
+
+/* Section header + rhythm */
+#join-the-discussion {
+  margin-top: 3rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--md-primary-fg-color);
+}
+
+/* subtle divider before the discussion section */
+.hr {
+  margin-top: 3rem;
+  margin-bottom: 1.8rem;
+  border: 0;
+  border-top: 1px solid rgba(148,163,184,.12); /* softer, blends with brand-accent */
+  width: 100%;
+  max-width: 720px; /* matches content width inside Material grid */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* container spacing for the comments */
+#comments {
+  margin-top: 0.75rem;
+  margin-bottom: 2.25rem;
+}
+
+/* iframe wrapper tweaks (can’t style inside the iframe) */
+.giscus, .giscus-frame {
+  border: none !important;
+  margin-top: 0.5rem;
+}
+
+/* --- Giscus Discussion styling: subtle admonition-style note --- */
+/* ultra-slim caption-style norms block */
+.giscus-norms {
+  all: unset;                                /* reset any inherited blockquote styles */
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(148,163,184,.05);
+  border: 1px solid rgba(148,163,184,.18);
+  border-radius: 4px;
+  padding: 0.28rem 0.55rem;                  /* tighter vertical + horizontal space */
+  margin: 0.5rem 0 1rem 0;
+  font-size: 0.76rem;                        /* smaller than body */
+  color: var(--brand-grey);
+  line-height: 1.25;
+  box-sizing: border-box;
+}
+
+.giscus-norms::before {
+  content: "💬";
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  line-height: 1;
+  margin-top: 0.05rem;
+}
+
+.giscus-norms p {
+  all: unset;
+  display: inline;
+  color: var(--brand-grey);
+  font-size: 0.76rem;
+  line-height: 1.25;
+}
+
+/* Keep links inside the page text subtle (iframe links are isolated) */
+#join-the-discussion + p a {
+  color: var(--brand-accent);
+  border-bottom: 1px dashed rgba(148,163,184,.35);
+}
+#join-the-discussion + p a:hover {
+  color: var(--md-primary-fg-color);
+  border-bottom-color: rgba(107,114,128,.6);
+}
+
+/* Dark mode tweaks */
+[data-md-color-scheme="slate"] .hr {
+  border-top-color: rgba(229,231,235,.10); /* a light touch of contrast for dark mode */
+}
+/* dark mode refinement */
+[data-md-color-scheme="slate"] .giscus-norms {
+  background: rgba(229,231,235,.04);
+  border-color: rgba(229,231,235,.1);
+  color: var(--md-default-fg-color--light);
+}
+.md-footer__link { display: none; }          /* hides prev/next links */
+.md-footer-meta__inner { justify-content: center; gap: 16px; } /* center socials */
+
+/* Hide the ¶ permalink icon on headings */
+.headerlink {
+  display: none !important;
+}
+
+/* === Giscus Discussion Block (fits the minimal grey theme) ============= */
+
+/* Section header + rhythm */
+#join-the-discussion {
+  margin-top: 3rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--md-primary-fg-color);
+}
+
+/* subtle divider before the discussion section */
+.hr {
+  margin-top: 3rem;
+  margin-bottom: 1.8rem;
+  border: 0;
+  border-top: 1px solid rgba(148,163,184,.12); /* softer, blends with brand-accent */
+  width: 100%;
+  max-width: 720px; /* matches content width inside Material grid */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* container spacing for the comments */
+#comments {
+  margin-top: 0.75rem;
+  margin-bottom: 2.25rem;
+}
+
+/* iframe wrapper tweaks (can’t style inside the iframe) */
+.giscus, .giscus-frame {
+  border: none !important;
+  margin-top: 0.5rem;
+}
+
+/* only style the norms block under the Giscus section */
+.md-typeset blockquote.giscus-norms {
+  border-left: 3px solid var(--brand-accent);
+  color: var(--brand-grey);
+  padding-left: 0.9rem;
+  font-size: 0.95rem;
+  margin: 1rem 0 2rem;
+}
+
+[data-md-color-scheme="slate"] .md-typeset blockquote.giscus-norms {
+  border-left-color: var(--md-accent-fg-color);
+  color: var(--md-default-fg-color--light);
+}
+
+/* Keep links inside the page text subtle (iframe links are isolated) */
+#join-the-discussion + p a {
+  color: var(--brand-accent);
+  border-bottom: 1px dashed rgba(148,163,184,.35);
+}
+#join-the-discussion + p a:hover {
+  color: var(--md-primary-fg-color);
+  border-bottom-color: rgba(107,114,128,.6);
+}
+
+[data-md-color-scheme="slate"] .hr {
+  border-top-color: rgba(229,231,235,.10); /* a light touch of contrast for dark mode */
+}
